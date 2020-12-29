@@ -14,3 +14,18 @@ Route
   .resource('user', 'UserController')
   .only(['index', 'store', 'show', 'update', 'destroy'])
   .middleware('auth')
+
+Route
+  .resource('comment', 'CommentController')
+  .only(['index', 'store', 'show', 'update', 'destroy'])
+  .middleware('auth')
+
+Route
+  .resource('pod', 'PodController')
+  .only(['index', 'store', 'show', 'update', 'destroy'])
+  .middleware('auth')
+
+Route
+  .resource('post', 'PostController')
+  .only(['index', 'store', 'show', 'update', 'destroy'])
+  .middleware('auth')

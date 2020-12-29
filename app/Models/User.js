@@ -27,6 +27,21 @@ class User extends Model {
     return this.hasMany('App/Models/Token')
   }
 
+  createdPods() {
+    this.hasMany('App/Models/Pod')
+  }
+
+  pods() {
+    return this
+      .belongsToMany('App/Models/Pod')
+      .pivotModel('App/Models/UserPod')
+      .withPivot(['id', 'user_id', 'pod_id', 'auto_comment', 'auto_like', 'updated_at', 'created_at'])
+  }
+
+  comments() {
+    this.hasMany('App/Models/Comment')
+  }
+
   static get columns() {
     return [
       'id',
@@ -36,6 +51,7 @@ class User extends Model {
       'photo'
     ]
   }
+
 }
 
 module.exports = User
