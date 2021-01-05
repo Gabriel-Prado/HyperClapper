@@ -21,6 +21,11 @@ Route
   .middleware('auth')
 
 Route
+  .resource('user.pod', 'UserPodController')
+  .only(['index', 'destroy', 'store'])
+  .middleware('auth')
+
+Route
   .resource('comment', 'CommentController')
   .only(['index', 'store', 'show', 'update', 'destroy'])
   .middleware('auth')
