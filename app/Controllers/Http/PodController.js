@@ -6,9 +6,11 @@ const Pod = use('App/Models/Pod')
 class PodController {
 
   async index({ request, response }) {
-    const { name } = request.all()
+    const { search } = request.all()
 
-    const pod = await Pod.all()
+    const pod = !!search ?
+      await Pod.query().where('name', 'like', `%${search}%`).orWhere('description', 'like', `%${search}%`).fetch() :
+      await Pod.all()
 
     return response.status('200').json(pod)
   }

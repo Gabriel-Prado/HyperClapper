@@ -31,6 +31,10 @@ class User extends Model {
     this.hasMany('App/Models/Pod')
   }
 
+  posts() {
+    this.hasMany('App/Models/Post')
+  }
+
   pods() {
     return this
       .belongsToMany('App/Models/Pod')

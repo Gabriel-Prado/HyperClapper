@@ -9,11 +9,16 @@ class Post extends Model {
     this.hasMany('App/Models/Comment')
   }
 
+  user() {
+    return this.belongsTo('App/Models/User', 'created_by')
+  }
+
   static get columns() {
     return [
       'id',
       'url',
-      'pod_id'
+      'pod_id',
+      'user_id'
     ]
   }
 

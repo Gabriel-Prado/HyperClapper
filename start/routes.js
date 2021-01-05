@@ -16,6 +16,11 @@ Route
   .middleware('auth')
 
 Route
+  .resource('user.post', 'UserPostController')
+  .only(['index'])
+  .middleware('auth')
+
+Route
   .resource('comment', 'CommentController')
   .only(['index', 'store', 'show', 'update', 'destroy'])
   .middleware('auth')
