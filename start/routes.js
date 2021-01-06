@@ -22,7 +22,7 @@ Route
 
 Route
   .resource('user.pod', 'UserPodController')
-  .only(['index', 'destroy', 'store'])
+  .only(['index', 'destroy', 'store', 'update'])
   .middleware('auth')
 
 Route

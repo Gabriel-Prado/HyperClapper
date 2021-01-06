@@ -40,6 +40,18 @@ class UserPodController {
     return response.status('201').json(userPod)
   }
 
+  async update({ request, auth }) {
+    const attributes = request.post()
+    const { user_id, id } = request.params
+
+    let userPod = await UserPod.findOrFail(id)
+
+    userPod.merge(attributes)
+    await userPod.save()
+
+    return userPod
+  }
+
   async destroy({ request, auth }) {
     const { id } = request.params
     const userPod = await UserPod.findOrFail(id)
