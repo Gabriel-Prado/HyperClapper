@@ -21,7 +21,9 @@ class Pod extends Model {
       'id',
       'name',
       'description',
-      'created_by'
+      'created_by',
+      'auto_like',
+      'auto_comment'
     ]
   }
 

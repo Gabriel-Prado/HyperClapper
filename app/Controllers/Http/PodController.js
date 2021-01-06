@@ -2,6 +2,7 @@
 
 const Route = use('Route')
 const Pod = use('App/Models/Pod')
+const UserPod = use('App/Models/UserPod')
 
 class PodController {
 
@@ -20,6 +21,13 @@ class PodController {
 
     const pod = await Pod.create(params)
     await pod.reload()
+
+    await UserPod.create({
+      user_id: pod.created_by,
+      pod_id: pod.id,
+      auto_like: pod.auto_like,
+      auto_comment: pod.auto_comment
+    })
 
     return response.status('201').json(pod)
   }

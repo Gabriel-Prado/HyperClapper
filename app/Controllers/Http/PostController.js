@@ -2,6 +2,7 @@
 
 const Route = use('Route')
 const Post = use('App/Models/Post')
+const Comment = use('App/Models/Comment')
 
 class PostController {
 
@@ -15,9 +16,17 @@ class PostController {
 
   async store({ request, response }) {
     const params = request.post()
+    const comments = params.comments
+    delete params.comments
 
     const post = await Post.create(params)
     await post.reload()
+
+    comments.forEach((item, i) => {
+      comments[i].post_id = post.id
+    })
+
+    await Comment.createMany(comments)
 
     return response.status('201').json(post)
   }
