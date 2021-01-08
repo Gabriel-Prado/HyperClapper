@@ -55,10 +55,15 @@ class UserPodController {
   }
 
   async destroy({ request, auth }) {
-    const { id } = request.params
-    const userPod = await UserPod.findOrFail(id)
+    const { user_id, id } = request.params
 
-    await userPod.delete()
+    await UserPod
+      .query()
+      .where({
+        'user_id': user_id,
+        'pod_id': id
+      })
+      .delete()
   }
 
 }
