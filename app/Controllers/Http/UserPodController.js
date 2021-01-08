@@ -31,6 +31,18 @@ class UserPodController {
   async store({ request, response }) {
     const params = request.post()
 
+    const search = await UserPod
+      .query()
+      .where({
+        'user_id': params.user_id,
+        'pod_id': params.pod_id
+      })
+      .fetch()
+
+    if (!!search && search.size()) {
+      return response.status('409').json('Association already exists')
+    }
+
     const pod = await Pod.findOrFail(params.pod_id)
 
     params.auto_like = pod.auto_like
