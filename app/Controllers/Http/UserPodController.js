@@ -31,7 +31,7 @@ class UserPodController {
   async store({ request, response }) {
     const params = request.post()
 
-    const pod = await UserPod.findOrFail(param.pod_id)
+    const pod = await UserPod.findOrFail(params.pod_id)
 
     params.auto_like = pod.auto_like
     params.auto_comment = pod.auto_comment
