@@ -18,7 +18,8 @@ class Post extends Model {
       'id',
       'url',
       'pod_id',
-      'user_id'
+      'user_id',
+      'engage'
     ]
   }
 
