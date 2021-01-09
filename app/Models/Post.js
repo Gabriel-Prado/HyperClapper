@@ -13,6 +13,10 @@ class Post extends Model {
     return this.belongsTo('App/Models/User', 'created_by')
   }
 
+  pod() {
+    return this.belongsTo('App/Models/Pod')
+  }
+
   static get columns() {
     return [
       'id',

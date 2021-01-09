@@ -35,7 +35,12 @@ class PodController {
   async show({ request }) {
     const { id } = request.params
 
-    return Pod.findOrFail(id)
+    const pod = await Pod.findOrFail(id)
+
+    await pod.load('users')
+    await pod.load('posts')
+
+    return pod
   }
 
   async update({ request, auth }) {

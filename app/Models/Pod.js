@@ -16,6 +16,10 @@ class Pod extends Model {
       .withPivot(['id', 'user_id', 'pod_id', 'auto_comment', 'auto_like', 'updated_at', 'created_at'])
   }
 
+  posts() {
+    return this.hasMany('App/Models/Post')
+  }
+
   static get columns() {
     return [
       'id',
